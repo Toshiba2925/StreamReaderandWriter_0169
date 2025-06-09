@@ -1,0 +1,53 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string baris;
+    string namefile;
+
+    cout << "masukkan name file : ";
+    cin >> namefile;
+    cin.ignore();
+
+    //membuat objek output file stream
+    ofstream outfile;
+    //membuka file untuk ditulisi
+    outfile.open(namefile + ".csv");
+
+    cout << ">= Menulis file, \'q\' untuk keluar" << endl;
+
+    //unlimited loop untuk menulis
+    while (true) {
+        cout << "_ ";
+        //mendapatkan setiap karakter dalam satu baris
+        getline(cin, baris);
+        //loop akan berhenti jika anda memasukan karakter q
+        if (baris == "q") break;
+        //menulis dengan memasukan nilau dari 'baris' ke dalam file
+        outfile << baris << endl;
+    }
+    //selesai dalam menulis sekarang menutup file nya
+    outfile.close();
+
+    //membuat objek input file stream
+    ifstream infile;
+    //menunjukan ke sebuah file
+    infile.open(namefile + ".csv");
+
+    cout << endl << ">= membuka dan membaca file " << endl;
+    //jika file ada maka
+    if (infile.is_open()) {
+        //melakukan perulangan setiap baris
+        while (getline(infile, baris)) {
+            //dan tampilkan disini
+            cout << baris << '\n';
+        }
+        //tutup file tersebut setelah selesai
+        infile.close();
+    }
+    //jika tidak menemukan file maka akan menampilkan ini
+    else cout << "Unable to open file";
+    return 0;
+}
