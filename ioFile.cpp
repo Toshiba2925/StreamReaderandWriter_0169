@@ -26,4 +26,11 @@ int main() {
     //selesai dalam menulis sekarang menutup file nya
     outfile.close();
 
+    //membuat objek input file stream
+    ifstream infile;
+    //menunjukan ke sebuah file
+    infile.open("contohfile.txt");
+
+    cout << endl << ">= membuka dan membaca file " << endl;
     
+}
